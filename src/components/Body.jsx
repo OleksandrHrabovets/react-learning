@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Body() {
   const [auth, setAuth] = useState(true);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    document.title = `You clicked ${count} times`;
+  });
 
   function onClickLogin() {
     console.log("Login click");
     setAuth(!auth);
+    setCount(count + 1);
   }
 
   return (
@@ -23,6 +29,7 @@ function Body() {
           <button onClick={onClickLogin}>Logout</button>
         </>
       )}
+      <p>You clicked {count} times</p>
     </div>
   );
 }
