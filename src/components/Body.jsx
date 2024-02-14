@@ -1,17 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 function Body() {
   const [auth, setAuth] = useState(true);
   const [count, setCount] = useState(0);
+  const ref = useRef(0);
+
+  function handleClick() {
+    console.log("Login click");
+    setAuth(!auth);
+    setCount(count + 1);
+    ref.current = ref.current + 1;
+    alert("You clicked " + ref.current + " times!");
+  }
 
   useEffect(() => {
     document.title = `You clicked ${count} times`;
   });
 
   function onClickLogin() {
-    console.log("Login click");
-    setAuth(!auth);
-    setCount(count + 1);
+    handleClick();
   }
 
   return (
