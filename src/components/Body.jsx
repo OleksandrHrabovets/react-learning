@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useId } from "react";
 
 function Body() {
   const [auth, setAuth] = useState(true);
   const [count, setCount] = useState(0);
   const ref = useRef(0);
+  const passwordHintId = useId();
 
   function handleClick() {
     console.log("Login click");
@@ -27,7 +28,14 @@ function Body() {
       {auth && (
         <>
           <input type="text" placeholder="login" />
-          <input type="text" placeholder="password" />
+          <input
+            type="password"
+            aria-describedby={passwordHintId}
+            placeholder="password"
+          />
+          <p id={passwordHintId}>
+            The password should contain at least 18 characters
+          </p>
           <button onClick={onClickLogin}>Login</button>
         </>
       )}
